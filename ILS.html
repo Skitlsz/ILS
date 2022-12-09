@@ -52,7 +52,7 @@ label {
 <body>
     <h1>Welcome to our food ordering system!</h1>
     <h2>Please select your items:</h2>
-    <form onsubmit="processFormData()">
+    <form onsubmit="antirefresh()">
         <label for="burger"><img src="https://ca-times.brightspotcdn.com/dims4/default/3354da9/2147483647/strip/true/crop/3000x2000+0+0/resize/1486x991!/quality/80/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fd4%2F01%2F63c0ea6947cbb7a0fc6933efde0d%2Ffo-quick-bites-20220906-13.jpg" alt="Burger" style="vertical-align: middle;">
 		<input type="checkbox" id="burger" name="burger" value="1">Hamburger</label>
         <br>
@@ -76,7 +76,7 @@ label {
 			<option value="none"></option>
             <option value="sting"><img src="https://api.watsons.com.ph/medias/prd-front-10078886.jpg?context=bWFzdGVyfGltYWdlc3w2MDU1Nzd8aW1hZ2UvanBlZ3xoZmMvaDg0Lzk2NDQzNTQ0MDQzODIvV1RDUEgtMTAwNzg4ODYtZnJvbnQuanBnfGQ3ZjZjOTY2NWRiOGZjYjczOTlmNzhkMDcwYjA1NjcxM2ZhMDhkMTExNGE0YTc2YmM2MGExNDEzMmNhMTA5ODk" alt="sting">Sting</option>
             <option value="coffee"><img src="https://www.worldatlas.com/r/w768/upload/12/f8/83/coffee-cup.jpg" alt="Coffee">Coffee</option>
-            <option value="coke"><img src="https://cf.shopee.ph/file/3ba1c85993d5fe69803fa257f18002bf" alt="Coke">Coke</option>
+            <option value="healthtea"><img src="https://cf.shopee.ph/file/e99cae7b52ba3d3c46c3248d795835b4" alt="healthtea">HealthTea</option>
         </select>
         <br>
         <label for="quantity">Quantity:</label>
@@ -88,31 +88,34 @@ label {
     <p>Total items: <span id="total-items">0</span></p>
     <p>Total price: <span id="total-price">₱0.00</span></p>
     <script>
+	// Get the form element
+const form = document.querySelector('form');
+
+// Add the onsubmit event handler
+form.addEventListener('submit', antirefresh);
+
         // Prices of each item
         const PRICES = {
-            burger: 1.99,
-            tapsilog: 2.99,
-            tonkatsu: 2.99,
-            adobo: 2.99,
-            menudo: 2.99,
-            curry: 2.99,
+            burger: 35.00,
+            tapsilog: 60.00,
+            tonkatsu: 60.00,
+            adobo: 60.00,
+            menudo: 60.00,
+            curry: 60.00,
 			none: 0.00,
-            sting: 0.79,
-            coffee: 0.99,
-            coke: 0.59,
+            sting: 20.00,
+            coffee: 10.00,
+            healthtea: 17.00,
         };
-		function processFormData(event) {
+function antirefresh(event) {
     // Prevent the form from being submitted
     event.preventDefault();
-
     // Get the values of the selected food items
     const selectedFood = document.querySelectorAll('input[type=checkbox]:checked');
-
-    // Calculate the total price of the selected food items
-    const totalPrice = selectedFood.reduce((total, food) => total + parseInt(food.value, 10), 0);
-
-    // Display the total price
-    document.querySelector('#total-price').innerHTML = totalPrice;
+    // Calculate the total number of items
+    const totalItems = String(selectedFood.length);
+    // Display the total number of items
+    document.querySelector('#total-items').innerHTML = `${totalItems}`;
 }
 
 
