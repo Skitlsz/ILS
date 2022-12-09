@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Food Ordering System</title>
-	</head>
+</head>
 	<style>
 body {
 	font-family: Arial, sans-serif;
@@ -49,11 +49,10 @@ label {
     }
 
 </style>
-
 <body>
     <h1>Welcome to our food ordering system!</h1>
     <h2>Please select your items:</h2>
-    <form>
+    <form onsubmit="processFormData()">
         <label for="burger"><img src="https://ca-times.brightspotcdn.com/dims4/default/3354da9/2147483647/strip/true/crop/3000x2000+0+0/resize/1486x991!/quality/80/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fd4%2F01%2F63c0ea6947cbb7a0fc6933efde0d%2Ffo-quick-bites-20220906-13.jpg" alt="Burger" style="vertical-align: middle;">
 		<input type="checkbox" id="burger" name="burger" value="1">Hamburger</label>
         <br>
@@ -102,6 +101,20 @@ label {
             coffee: 0.99,
             coke: 0.59,
         };
+		function processFormData(event) {
+    // Prevent the form from being submitted
+    event.preventDefault();
+
+    // Get the values of the selected food items
+    const selectedFood = document.querySelectorAll('input[type=checkbox]:checked');
+
+    // Calculate the total price of the selected food items
+    const totalPrice = selectedFood.reduce((total, food) => total + parseInt(food.value, 10), 0);
+
+    // Display the total price
+    document.querySelector('#total-price').innerHTML = totalPrice;
+}
+
 
         function calculateTotal() {
             const quantity = document.getElementById('quantity').value;
