@@ -71,6 +71,10 @@ label {
         <label for="curry"><img src="https://healthyfitnessmeals.com/wp-content/uploads/2022/04/Chicken-Curry-Recipe-12.jpg" alt="Curry" style="vertical-align: middle;">
 		<input type="checkbox" id="curry" name="curry" value="1">Curry</label>
         <br>
+		<select name="with-or-without-rice">
+        <option value="25">With rice (+10)</option>
+        <option value="0">Without rice</option>
+    </select>
         <label for="drink-type">Drink Type:</label>
         <select id="drink-type" name="drink-type">
 			<option value="none"></option>
@@ -106,6 +110,7 @@ form.addEventListener('submit', antirefresh);
             sting: 20.00,
             coffee: 10.00,
             healthtea: 17.00,
+			rice: 10.00,
         };
 function antirefresh(event) {
     // Prevent the form from being submitted
@@ -117,7 +122,6 @@ function antirefresh(event) {
     // Display the total number of items
     document.querySelector('#total-items').innerHTML = `${totalItems}`;
 }
-
 
         function calculateTotal() {
             const quantity = document.getElementById('quantity').value;
