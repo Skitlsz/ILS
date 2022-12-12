@@ -93,7 +93,8 @@ label {
         <label for="quantity">Quantity:</label>
         <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
         <br>
-        <input type="submit" value="Add to Order" onclick="calculateTotal()">
+        <input type="submit" value="Add to Order" onclick="calculateTotal()"><br>
+		<input type="submit" value="Submit Order" onclick="submitForm()">
     </form>
     <h2>Your Order:</h2>
     <p>Total items: <span id="total-items">0</span></p>
@@ -173,8 +174,26 @@ function antirefresh(event) {
             document.getElementById('total-price').innerHTML = '₱' + totalPrice.toFixed(2);
             document.getElementById('total-items').innerHTML = totalItems;
         }
+		
+		function submitForm() {
+  // get the values from the form input fields
+  var name = document.getElementById("name").value;
+  var item1 = document.getElementById("item1").value;
+  var item2 = document.getElementById("item2").value;
+  var item3 = document.getElementById("item3").value;
+  var drink = document.getElementById("drink").value;
+  var rice = document.getElementById("rice").value;
+   // display the results
+  document.getElementById("results").innerHTML =
+    "Name: " + name + "<br>" +
+    "Item 1: " + item1 + "<br>" +
+    "Item 2: " + item2 + "<br>" +
+    "Item 3: " + item3 + "<br>" +
+    "Drink: " + drink + "<br>" +
+    "Rice: " + rice + "<br>";
+}
+
     </script>
-	<script>
-</script>
+<p id="results"></p>
 </body>
 </html>
