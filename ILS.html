@@ -76,9 +76,10 @@ label {
         <label for="curry"><img src="https://healthyfitnessmeals.com/wp-content/uploads/2022/04/Chicken-Curry-Recipe-12.jpg" alt="Curry" style="vertical-align: middle;">
 		<input type="checkbox" id="curry" name="curry" value="1">Curry</label>
         <br>
-		<select id="rice" onchange="updatePrice()">
-		<option value="0">Without Rice</option>
-		<option value="10">With Rice (+10)</option>
+		<label for="drink-type">Rice Option:</label>
+		<select id="rice" name="rice">
+		<option value="w0">Without Rice</option>
+		<option value="with">Include Rice (+10)</option>
 		</select>
 
         <label for="drink-type">Drink Type:</label>
@@ -128,19 +129,10 @@ function antirefresh(event) {
     // Display the total number of items
     document.querySelector('#total-items').innerHTML = `${totalItems}`;
 }
-function updatePrice() {
-  // Get the value of the "rice" option
-  var riceOption = document.getElementById("rice").value;
-  // Increase the price by the value of the "rice" option
-  var price = document.getElementById("price").innerHTML;
-  price = parseInt(price) + parseInt(riceOption);
-  document.getElementById("price").innerHTML = price;
-}
-
-
         function calculateTotal() {
             const quantity = document.getElementById('quantity').value;
             const drinkType = document.getElementById('drink-type').value;
+			const Rice = document.getElementById('rice').value;
 
             let totalPrice = 0;
             let totalItems = 0;
@@ -172,6 +164,10 @@ function updatePrice() {
             }
             if (drinkType !== '') {
                 totalPrice += PRICES[drinkType] * quantity;
+                totalItems += quantity;
+            }
+			if (rice !== '') {
+                totalPrice += PRICES[Rice] * quantity;
                 totalItems += quantity;
             }
 
